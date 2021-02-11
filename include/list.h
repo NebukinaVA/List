@@ -73,7 +73,7 @@ public:
 	bool operator!=(const List<T> &l);
 	Iterator begin() { return Iterator(first); }
 	Iterator end()   { return Iterator(nullptr); }
-	void reverse(int k);
+	List<T>& reverse(int k1, int k2);
 };
 
 template <class T>
@@ -241,7 +241,7 @@ bool List<T>::operator!=(const List<T> &l)
 {
 	return !(*this == l);
 } 
-
+/*
 template <class T>
 void List<T>::reverse(int k)
 {
@@ -255,4 +255,17 @@ void List<T>::reverse(int k)
 		first = *it2;
 		it1->next = nullptr;
 	}	
+}
+*/
+
+template <class T>
+List<T>& List<T>::reverse(int k1, int k2)
+{
+	if (empty()) throw "Error";
+	if ((k2 > Size) || (k1 < 0)) throw "Error";
+	if (k1 != k2) // else list stays the same
+	{
+		List<T> l;
+
+	}
 }
