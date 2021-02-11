@@ -62,7 +62,7 @@ public:
 	size_t size() { return Size; }
 	void append(const T& elem, Node<T>* ptr);
 	void remove(Node<T>* ptr);
-	void push_front(const T elem);
+	void push_front(const T& elem);
 	void pop_front();
 	void push_back(const T& elem);
 	void pop_back();
@@ -73,6 +73,7 @@ public:
 	bool operator!=(const List<T> &l);
 	Iterator begin() { return Iterator(first); }
 	Iterator end()   { return Iterator(nullptr); }
+	void reverse(int k);
 };
 
 template <class T>
@@ -119,7 +120,7 @@ void List<T>::append(const T& elem, Node<T>* ptr)
 {
 	if (empty())
 	{
-		first = new Node<T>(elem, ptr->next);
+		first = new Node<T>(elem);
 	}
 	else
 	{
@@ -141,7 +142,7 @@ void List<T>::remove(Node<T>* ptr)
 }
 
 template <class T>
-void List<T>::push_front(const T elem)
+void List<T>::push_front(const T& elem)
 {
 	Node<T>* temp = new Node<T>(elem, first);
 	first = temp;
@@ -240,3 +241,18 @@ bool List<T>::operator!=(const List<T> &l)
 {
 	return !(*this == l);
 } 
+
+template <class T>
+void List<T>::reverse(int k)
+{
+	if (empty()) throw "Error";
+	if ((k > Size) || (k < 0)) throw "Error";
+	if ((k != Size) && (k != 0)) // else list stays the same
+	{
+		Iterator it1(first);
+		it1 += (Size - k);
+		Iterator it2(++it1);
+		first = *it2;
+		it1->next = nullptr;
+	}	
+}

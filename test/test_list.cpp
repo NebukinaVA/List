@@ -308,3 +308,17 @@ TEST(Iterator, addition_assignment_is_correct)
 
 	EXPECT_EQ(3, it->data);
 }
+
+TEST(Iterator, can_reverse_list)
+{
+	List<int> l;
+
+	l.push_front(1);
+	l.push_front(2);
+	l.push_front(3);
+	l.push_front(4);
+	l.push_front(5);
+	l.reverse(2);
+
+	EXPECT_EQ(4, l.begin()->data);
+}
